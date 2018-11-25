@@ -6,7 +6,7 @@ import json
 from hashlib import sha1 
 
 package_name = "Grunt"
-package_url = "https://github.com/tvooo/sublime-grunt"
+package_url = "https://github.com/sptndc/sublime-grunt"
 cache_file_name = ".sublime-grunt.cache"
 
 
