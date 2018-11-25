@@ -72,10 +72,10 @@ can add the path(s) to check as follows:
 Alternatively this could be set per-project in your .sublime-project
 settings object.
 
-## Credits
+## Maintenance
 
-This project was forked from [Tim von Oldenburg](https://github.com/tvooo)'s
-[sublime-grunt](https://github.com/tvooo/sublime-grunt).
+sublime-grunt was created by [Tim von Oldenburg](https://github.com/tvooo) and is
+currently maintained by [Septian Dwic.](https://github.com/sptndc).
 
 ## License
 
