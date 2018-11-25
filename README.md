@@ -1,29 +1,46 @@
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+# Sublime Grunt
 
-sublime-grunt
-=============
-
-A Grunt task runner for Sublime Text
-
-![Screencast of sublime-grunt](screencast.gif)
+A [Grunt](https://github.com/gruntjs/grunt) task runner for Sublime
+Text.
 
 ## Installation
 
-sublime-grunt can be installed via [Sublime Package Control](https://sublime.wbond.net/). In Package Control, it is called **Grunt**. Please refer to the offical Package Control documentation to learn how to install packages.
+### Package Control
 
-Alternatively, you can also clone the [sublime-grunt repository](https://github.com/tvooo/sublime-grunt/) into your Sublime Text packages folder.
+The easiest way to install is using Sublime's [Package Control](https://packagecontrol.io/packages/Grunt). It's
+listed as `Grunt`.
+
+1. Open `Command Palette` using menu item `Tools → Command Palette...`
+2. Choose `Package Control: Install Package`
+3. Find `Grunt` and hit `Enter`
+
+### Manually
+
+1. [Download the tarball](https://github.com/sptndc/sublime-grunt/releases)
+2. Extract and rename folder to `Grunt`
+3. Copy folder into `Packages` directory, which you can find using
+   the menu item `Preferences → Browse Packages...`
+
+## Screenshots
+
+![Screencast of Sublime Grunt](screencast.gif)
 
 ## Usage
 
-Open the command palette using Ctrl+Shift+P (or Cmd+Shift+P on Mac, respectively)
-and choose the "Grunt" command.
+Open the Command Palette:
 
-The plugin expects to find a Gruntfile (`Gruntfile.js` or `Gruntfile.coffee`) in an open folder.
-It displays a sorted list of available Grunt tasks out of this Grunt file.
-If it finds more than one Gruntfile, it first provides a list for selection.
+* macOS: <kbd>cmd+shift+P</kbd>
+* Linux/Windows: <kbd>ctrl+shift+P</kbd>
 
-As of version 0.2, there is also a command to kill running tasks, for example
-`watch` tasks.
+Now choose the "Grunt" command.
+
+The plugin expects to find a Gruntfile (`Gruntfile.js` or
+`Gruntfile.coffee`) in an open folder. It displays a sorted list of
+available Grunt tasks out of this Grunt file. If it finds more than
+one Gruntfile, it first provides a list for selection.
+
+As of version 0.2, there is also a command to kill running tasks, for
+example `watch` tasks.
 
 ## Settings
 
@@ -38,30 +55,28 @@ You may override your `PATH` environment variable as follows:
     }
 }
 ```
-If your GruntFile is not in the base path of the project, then you can add the path(s) to check as follows:
+
+If your GruntFile is not in the base path of the project, then you
+can add the path(s) to check as follows:
 
 ```
 {
-    "gruntfile_paths": ["/path", "/another/path", "/one/final/path"]
+    "gruntfile_paths": [
+        "/path",
+        "/another/path",
+        "/one/final/path"
+    ]
 }
 ```
-Alternatively this could be set per-project in your .sublime-project settings object
 
-## Releases
+Alternatively this could be set per-project in your .sublime-project
+settings object.
 
-* 1.0 Jumping to 1.0 to support ST versioning with tags
-* 0.3 Grunt tasks are cached
-* 0.2 Rewrite; supports Grunt >= 0.4, tasks can be killed (for example the `watch` task)
-* 0.1 Initial release
+## Credits
 
-## Thanks
+This project was forked from [Tim von Oldenburg](https://github.com/tvooo)'s
+[sublime-grunt](https://github.com/tvooo/sublime-grunt).
 
-Thanks for some contributions go to
+## License
 
-* [VirtueMe](https://github.com/VirtueMe)
-* [antonellopasella](https://github.com/antonellopasella)
-* [structAnkit](https://github.com/structAnkit)
-* [lavrton](https://github.com/lavrton)
-* [adamcbrewer](https://github.com/adamcbrewer)
-* [thebjorn](https://github.com/thebjorn)
-* [maliayas](https://github.com/maliayas)
+This project was released under the [MIT](LICENSE) License.
