@@ -16,10 +16,10 @@ A clear and concise description of what you expected to happen.
 **Actual behavior**
 A clear and concise description of what actual to happen.
 
-**Environment<!--(complete the following information)-->**
+**Environment**
  - Operating System: [e.g. Windows]
  - Sublime Text: [e.g. Build 3080]
  - Grunt: [e.g v1.0.1]
 
-**Additional context<!--(optional)-->**
+**Additional context**
 Add any other context or screenshots about the problem here.
