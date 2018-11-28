@@ -1,6 +1,6 @@
 # Sublime Grunt
 
-A [Grunt](https://github.com/gruntjs/grunt) task runner for Sublime Text.
+A [Grunt](https://gruntjs.com/) task runner for Sublime Text.
 
 ![Screencast of Sublime Grunt](screencast.gif)
 
