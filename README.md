@@ -17,10 +17,13 @@ listed as `Grunt`.
 
 ### Manually
 
-1. [Download the tarball](https://github.com/sptndc/sublime-grunt/releases)
-2. Extract and rename folder to `Grunt`
-3. Copy folder into `Packages` directory, which you can find using
-   the menu item `Preferences → Browse Packages...`
+1. Goto into Sublime Text Packages directory, which you can find
+   using the menu item `Preferences -> Browse Packages...`.
+2. Clone this repository using a command below:
+   ```
+   git clone https://github.com/sptndc/sublime-grunt.git Grunt
+   ```
+3. Enjoy!
 
 ## Usage
 
