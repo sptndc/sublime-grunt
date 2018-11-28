@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     eslint: {
       options: {
-        configFile: '.eslintrc.js'
+        configFile: '.eslintrc'
       },
       validate: ['Gruntfile.js', 'expose.js']
     }
