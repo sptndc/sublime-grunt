@@ -71,8 +71,9 @@ settings object.
 
 ## Maintenance
 
-sublime-grunt was created by [Tim von Oldenburg](https://github.com/tvooo) and is
-currently maintained by [Septian Dwic.](https://github.com/sptndc).
+sublime-grunt was created by [Tim von Oldenburg](https://github.com/tvooo), and
+grunt-sublime-snippets was created by [Jason Nickel](https://github.com/devatrox).
+is currently maintained by [Septian Dwic](https://github.com/sptndc).
 
 ## License
 
