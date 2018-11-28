@@ -1,9 +1,10 @@
+import os
+import json
+import subprocess
+from hashlib import sha1
+
 import sublime
 import sublime_plugin
-import os
-import subprocess
-import json
-from hashlib import sha1 
 
 package_name = "Grunt"
 package_url = "https://github.com/sptndc/sublime-grunt"
@@ -20,7 +21,9 @@ class GruntRunner(object):
             self.callcount = 0
             json_result = self.fetch_json()
         except TypeError as e:
-            self.window.new_file().run_command("grunt_error", {"message": "SublimeGrunt: JSON is malformed\n\n%s\n\n" % e})
+            self.window.new_file().run_command("grunt_error", {
+                "message": "SublimeGrunt: JSON is malformed\n\n%s\n\n" % e
+            })
             sublime.error_message("Could not read available tasks\n")
         else:
             tasks = [[name, task['info'], task['meta']['info']] for name, task in json_result.items()]
@@ -28,12 +31,10 @@ class GruntRunner(object):
 
     def run_expose(self):
         package_path = os.path.join(sublime.packages_path(), package_name)
-
         args = r'grunt --no-color --tasks "%s" expose:%s' % (package_path, os.path.basename(self.chosen_gruntfile))
-
-        expose = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=get_env_with_exec_args_path(), cwd=self.wd, shell=True)
+        expose = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                  env=get_env_with_exec_args_path(), cwd=self.wd, shell=True)
         (stdout, stderr) = expose.communicate()
-
         if 127 == expose.returncode:
             sublime.error_message("\"grunt\" command not found.\nPlease add Grunt's location to your PATH.")
             return
@@ -43,27 +44,26 @@ class GruntRunner(object):
     def fetch_json(self):
         jsonfilename = os.path.join(self.wd, cache_file_name)
         data = None
-
         if os.path.exists(jsonfilename):
-           filesha1 = hashfile(self.chosen_gruntfile)
-
-           json_data=open(jsonfilename)
-
-           try:
+            filesha1 = hashfile(self.chosen_gruntfile)
+            json_data = open(jsonfilename)
+            try:
                 data = json.load(json_data)
                 if data[self.chosen_gruntfile]["sha1"] == filesha1:
                     return data[self.chosen_gruntfile]["tasks"]
-           finally:
-               json_data.close()
-        self.callcount += 1
+            finally:
+                json_data.close()
 
-        if self.callcount == 1: 
+        self.callcount += 1
+        if self.callcount == 1:
             return self.run_expose()
 
         if data is None:
             raise TypeError("Could not expose gruntfile")
 
-        raise TypeError("Sha1 from grunt expose ({0}) is not equal to calculated ({1})".format(data[self.chosen_gruntfile]["sha1"], filesha1))
+        raise TypeError("Sha1 from grunt expose ({0}) is not equal to calculated ({1})".format(
+            data[self.chosen_gruntfile]["sha1"], filesha1
+        ))
 
     def list_gruntfiles(self):
         # Load gruntfile paths from config
@@ -89,23 +89,27 @@ class GruntRunner(object):
     def choose_file(self, file):
         self.wd = os.path.dirname(self.grunt_files[file])
         self.chosen_gruntfile = self.grunt_files[file]
-
         self.tasks = self.list_tasks()
         if self.tasks is not None:
-            #fix quick panel unavailable
-            sublime.set_timeout(lambda:  self.window.show_quick_panel(self.tasks, self.on_done), 1)
+            # fix quick panel unavailable
+            sublime.set_timeout(lambda: self.window.show_quick_panel(self.tasks, self.on_done), 1)
 
     def on_done(self, task):
         if task > -1:
             path = get_env_path()
-            exec_args = {'cmd': "grunt --no-color " + self.tasks[task][0], 'shell': True, 'working_dir': self.wd, 'path': path}
+            exec_args = {
+                'cmd': "grunt --no-color " + self.tasks[task][0],
+                'shell': True,
+                'working_dir': self.wd,
+                'path': path
+            }
             self.window.run_command("exec", exec_args)
 
 
 def hashfile(filename):
     with open(filename, mode='rb') as f:
         filehash = sha1()
-        content = f.read();
+        content = f.read()
         filehash.update(str("blob " + str(len(content)) + "\0").encode('UTF-8'))
         filehash.update(content)
         return filehash.hexdigest()
@@ -118,6 +122,7 @@ def get_env_path():
         exec_args = settings.get('exec_args')
         if exec_args:
             path = exec_args.get('path', os.environ['PATH'])
+
     return str(path)
 
 
@@ -128,18 +133,21 @@ def get_grunt_file_paths():
     # If there is a setting for the paths in the project, it takes precidence
     # No setting in the project, then use the global one
     # If there is no global one, then use a default
-    return sublime.active_window().active_view().settings().get('SublimeGrunt', {}).get('gruntfile_paths', global_settings.get('gruntfile_paths', []))
+    return sublime.active_window().active_view().settings().get('SublimeGrunt', {}).get(
+        'gruntfile_paths', global_settings.get('gruntfile_paths', [])
+    )
 
 
 def get_env_with_exec_args_path():
     env = os.environ.copy()
     settings = sublime.load_settings('SublimeGrunt.sublime-settings')
     if settings:
-        exec_args = settings.get('exec_args')        
+        exec_args = settings.get('exec_args')
         if exec_args:
             path = str(exec_args.get('path', ''))
             if path:
                 env['PATH'] = path
+
     return env
 
 
@@ -151,6 +159,7 @@ class GruntCommand(sublime_plugin.WindowCommand):
 class GruntKillCommand(sublime_plugin.WindowCommand):
     def run(self):
         self.window.run_command("exec", {"kill": True})
+
 
 class GruntErrorCommand(sublime_plugin.TextCommand):
     def run(self, edit, **args):
