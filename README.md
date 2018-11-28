@@ -1,7 +1,8 @@
 # Sublime Grunt
 
-A [Grunt](https://github.com/gruntjs/grunt) task runner for Sublime
-Text.
+A [Grunt](https://github.com/gruntjs/grunt) task runner for Sublime Text.
+
+![Screencast of Sublime Grunt](screencast.gif)
 
 ## Installation
 
@@ -20,10 +21,6 @@ listed as `Grunt`.
 2. Extract and rename folder to `Grunt`
 3. Copy folder into `Packages` directory, which you can find using
    the menu item `Preferences → Browse Packages...`
-
-## Screenshots
-
-![Screencast of Sublime Grunt](screencast.gif)
 
 ## Usage
 
