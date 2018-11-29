@@ -6,9 +6,7 @@ from hashlib import sha1
 import sublime
 import sublime_plugin
 
-package_name = "Grunt"
 package_url = "https://github.com/sptndc/sublime-grunt"
-cache_file_name = ".sublime-grunt.cache"
 
 
 class GruntRunner(object):
@@ -30,7 +28,7 @@ class GruntRunner(object):
             return sorted(tasks, key=lambda task: task)
 
     def run_expose(self):
-        package_path = os.path.join(sublime.packages_path(), package_name)
+        package_path = os.path.join(sublime.packages_path(), 'Grunt')
         args = r'grunt --no-color --tasks "%s" expose:%s' % (package_path, os.path.basename(self.chosen_gruntfile))
         expose = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                   env=get_env_with_exec_args_path(), cwd=self.wd, shell=True)
@@ -42,14 +40,14 @@ class GruntRunner(object):
         return self.fetch_json()
 
     def fetch_json(self):
-        jsonfilename = os.path.join(self.wd, cache_file_name)
+        json_file_name = os.path.join(self.wd, '.sublime-grunt.cache')
         data = None
-        if os.path.exists(jsonfilename):
-            filesha1 = hashfile(self.chosen_gruntfile)
-            json_data = open(jsonfilename)
+        if os.path.exists(json_file_name):
+            sha1 = hash_file(self.chosen_gruntfile)
+            json_data = open(json_file_name)
             try:
                 data = json.load(json_data)
-                if data[self.chosen_gruntfile]["sha1"] == filesha1:
+                if data[self.chosen_gruntfile]["sha1"] == sha1:
                     return data[self.chosen_gruntfile]["tasks"]
             finally:
                 json_data.close()
@@ -62,7 +60,7 @@ class GruntRunner(object):
             raise TypeError("Could not expose gruntfile")
 
         raise TypeError("Sha1 from grunt expose ({0}) is not equal to calculated ({1})".format(
-            data[self.chosen_gruntfile]["sha1"], filesha1
+            data[self.chosen_gruntfile]["sha1"], sha1
         ))
 
     def list_gruntfiles(self):
@@ -106,13 +104,13 @@ class GruntRunner(object):
             self.window.run_command("exec", exec_args)
 
 
-def hashfile(filename):
-    with open(filename, mode='rb') as f:
-        filehash = sha1()
-        content = f.read()
-        filehash.update(str("blob " + str(len(content)) + "\0").encode('UTF-8'))
-        filehash.update(content)
-        return filehash.hexdigest()
+def hash_file(file_name):
+    with open(file_name, mode='rb') as fn:
+        file_hash = sha1()
+        content = fn.read()
+        file_hash.update(str("blob " + str(len(content)) + "\0").encode('UTF-8'))
+        file_hash.update(content)
+        return file_hash.hexdigest()
 
 
 def get_env_path():
