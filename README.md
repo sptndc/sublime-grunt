@@ -8,21 +8,27 @@ A [Grunt](https://gruntjs.com/) task runner for Sublime Text.
 
 ### Package Control
 
-The easiest way to install is using Sublime's [Package Control](https://packagecontrol.io/packages/Grunt). It's
-listed as `Grunt`.
+The easiest way to install using [Package Control](https://packagecontrol.io/).
 
 1. Open `Command Palette` using menu item `Tools → Command Palette...`
+
 2. Choose `Package Control: Install Package`
+
 3. Find `Grunt` and hit `Enter`
 
 ### Manually
 
+If you prefer a manual approach, follow the steps below.
+
 1. Goto into Sublime Text Packages directory, which you can find
-   using the menu item `Preferences -> Browse Packages...`.
-2. Clone this repository using a command below:
-   ```
-   git clone https://github.com/sptndc/sublime-grunt.git Grunt
-   ```
+   using the menu item `Preferences -> Browse Packages...`
+
+2. Clone this repository.
+
+    ```
+    git clone https://github.com/sptndc/sublime-grunt.git Grunt
+    ```
+
 3. Enjoy!
 
 ## Usage
@@ -44,14 +50,14 @@ example `watch` tasks.
 
 ## Settings
 
-The file `SublimeGrunt.sublime-settings` is used for configuration.
+The file `Grunt.sublime-settings` is used for configuration.
 
 You may override your `PATH` environment variable as follows:
 
 ```
 {
     "exec_args": {
-        "path": "/bin:/usr/bin:/usr/local/bin"
+        "path": "node_modules/.bin:/bin:/usr/bin:/usr/local/bin"
     }
 }
 ```
