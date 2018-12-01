@@ -20,7 +20,7 @@ class GruntRunner(object):
             json_result = self.fetch_json()
         except TypeError as e:
             self.window.new_file().run_command("grunt_error", {
-                "message": "SublimeGrunt: JSON is malformed\n\n%s\n\n" % e
+                "message": "Grunt: JSON is malformed\n\n%s\n\n" % e
             })
             sublime.error_message("Could not read available tasks\n")
         else:
@@ -115,7 +115,7 @@ def hash_file(file_name):
 
 def get_env_path():
     path = os.environ['PATH']
-    settings = sublime.load_settings('SublimeGrunt.sublime-settings')
+    settings = sublime.load_settings('Grunt.sublime-settings')
     if settings:
         exec_args = settings.get('exec_args')
         if exec_args:
@@ -126,19 +126,19 @@ def get_env_path():
 
 def get_grunt_file_paths():
     # Get the user settings
-    global_settings = sublime.load_settings('SublimeGrunt.sublime-settings')
+    global_settings = sublime.load_settings('Grunt.sublime-settings')
     # Check the settings for the current project
     # If there is a setting for the paths in the project, it takes precidence
     # No setting in the project, then use the global one
     # If there is no global one, then use a default
-    return sublime.active_window().active_view().settings().get('SublimeGrunt', {}).get(
+    return sublime.active_window().active_view().settings().get('Grunt', {}).get(
         'gruntfile_paths', global_settings.get('gruntfile_paths', [])
     )
 
 
 def get_env_with_exec_args_path():
     env = os.environ.copy()
-    settings = sublime.load_settings('SublimeGrunt.sublime-settings')
+    settings = sublime.load_settings('Grunt.sublime-settings')
     if settings:
         exec_args = settings.get('exec_args')
         if exec_args:

@@ -11,14 +11,14 @@
         "caption": "Preferences: Grunt - Settings – Default",
         "command": "open_file", "args":
         {
-            "file": "${packages}/Grunt/SublimeGrunt.sublime-settings"
+            "file": "${packages}/Grunt/Grunt.sublime-settings"
         }
     },
     {
         "caption": "Preferences: Grunt - Settings – User",
         "command": "open_file", "args":
         {
-            "file": "${packages}/User/SublimeGrunt.sublime-settings"
+            "file": "${packages}/User/Grunt.sublime-settings"
         }
     }
 ]
