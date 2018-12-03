@@ -65,16 +65,27 @@ class GruntRunner(object):
 
     def list_gruntfiles(self):
         # Load gruntfile paths from config
-        self.folders = get_grunt_file_paths()
+        self.file_paths = get_grunt_file_paths()
+        self.folders = []
         self.grunt_files = []
         for f in self.window.folders():
             self.folders.append(f)
 
+        for f in self.file_paths:
+            if os.path.isabs(f):
+                self.folders.append(f)
+            else:
+                self.folders += [
+                    os.path.join(parent, f)
+                    for parent in self.window.folders()
+                    if os.path.exists(os.path.join(parent, f))
+                ]
+
         for f in self.folders:
             if os.path.exists(os.path.join(f, "Gruntfile.js")):
-                self.grunt_files.append(os.path.join(f, "Gruntfile.js"))
+                self.grunt_files.append(os.path.realpath(os.path.join(f, "Gruntfile.js")))
             elif os.path.exists(os.path.join(f, "Gruntfile.coffee")):
-                self.grunt_files.append(os.path.join(f, "Gruntfile.coffee"))
+                self.grunt_files.append(os.path.realpath(os.path.join(f, "Gruntfile.coffee")))
 
         if len(self.grunt_files) > 0:
             if len(self.grunt_files) == 1:
