@@ -85,11 +85,15 @@ class GruntRunner(object):
             sublime.error_message("Gruntfile.js or Gruntfile.coffee not found!")
 
     def choose_file(self, file):
+        # Fix quick panel was cancelled
+        if file == -1:
+            return
+
         self.wd = os.path.dirname(self.grunt_files[file])
         self.chosen_gruntfile = self.grunt_files[file]
         self.tasks = self.list_tasks()
         if self.tasks is not None:
-            # fix quick panel unavailable
+            # Fix quick panel unavailable
             sublime.set_timeout(lambda: self.window.show_quick_panel(self.tasks, self.on_done), 1)
 
     def on_done(self, task):
