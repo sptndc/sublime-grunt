@@ -1,5 +1,7 @@
 # Sublime Grunt
 
+[![GitHub release](https://img.shields.io/github/release/sptndc/sublime-grunt.svg)](https://github.com/sptndc/sublime-grunt/releases) [![Package Control](https://img.shields.io/packagecontrol/dt/Grunt.svg)](https://packagecontrol.io/packages/Grunt)
+
 A [Grunt](https://gruntjs.com/) task runner for Sublime Text.
 
 ![Screencast of Sublime Grunt](screencast.gif)
