@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[grunt.file.expand(${1:[options, ] patterns})${0}]]></content>
+	<tabTrigger>expand</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

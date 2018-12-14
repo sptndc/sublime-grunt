@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+grunt.file.isPathAbsolute(${1:path1 [, path2 [, ...]]})${0}
+]]></content>
+	<tabTrigger>ispathabsolute</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

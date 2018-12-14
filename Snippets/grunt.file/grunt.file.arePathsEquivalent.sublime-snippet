@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+grunt.file.arePathsEquivalent(${1:path1 [, path2 [, ...]]})${0}
+]]></content>
+	<tabTrigger>arepathsequivalent</tabTrigger>
+	<scope>source.js</scope>
+</snippet>
