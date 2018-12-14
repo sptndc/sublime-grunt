@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[grunt.log.write(${1:msg})${0}]]></content>
+	<tabTrigger>logwrite</tabTrigger>
+	<scope>source.js</scope>
+</snippet>
