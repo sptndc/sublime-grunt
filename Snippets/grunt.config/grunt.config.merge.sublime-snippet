@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[grunt.config.merge(${1:configObject})${0}]]></content>
+	<tabTrigger>configmerge</tabTrigger>
+	<scope>source.js</scope>
+</snippet>
