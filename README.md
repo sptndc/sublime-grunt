@@ -77,7 +77,7 @@ can add the path(s) to check as follows:
 }
 ```
 
-Alternatively this could be set per-project in your .sublime-project
+Alternatively, this could be set per-project in your .sublime-project
 settings object.
 
 ## Maintenance
